@@ -15,6 +15,7 @@ export declare function xOnlyPointFromScalar(d: Uint8Array): Uint8Array;
 export declare function xOnlyPointFromPoint(p: Uint8Array): Uint8Array;
 export declare function pointMultiply(p: Uint8Array, tweak: Uint8Array, compressed?: boolean): Uint8Array | null;
 export declare function privateAdd(d: Uint8Array, tweak: Uint8Array): Uint8Array | null;
+export declare function privateMultiply(d: Uint8Array, tweak: Uint8Array): Uint8Array | null;
 export declare function privateSub(d: Uint8Array, tweak: Uint8Array): Uint8Array | null;
 export declare function privateNegate(d: Uint8Array): Uint8Array;
 export interface XOnlyPointAddTweakResult {

@@ -116,6 +116,14 @@ const _privateAdd = (privateKey, tweak) => {
   else return null;
 };
 
+const _privateMultiply = (privateKey, tweak) => {
+  const p = normalizePrivateKey(privateKey);
+  const t = normalizeScalar(tweak);
+  const mul = necc.utils._bigintTo32Bytes(necc.utils.mod(p * t, necc.CURVE.n));
+  if (necc.utils.isValidPrivateKey(mul)) return mul;
+  else return null;
+};
+
 const _privateSub = (privateKey, tweak) => {
   const p = normalizePrivateKey(privateKey);
   const t = normalizeScalar(tweak);
@@ -278,6 +286,16 @@ export function privateAdd(d, tweak) {
     throw new Error('Expected Tweak');
   }
   return throwToNull(() => _privateAdd(d, tweak));
+}
+
+export function privateMultiply(d, tweak) {
+  if (isPrivate(d) === false) {
+    throw new Error('Expected Private');
+  }
+  if (isTweak(tweak) === false) {
+    throw new Error('Expected Tweak');
+  }
+  return throwToNull(() => _privateMultiply(d, tweak));
 }
 
 export function privateSub(d, tweak) {
